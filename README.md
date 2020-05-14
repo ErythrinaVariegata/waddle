@@ -44,3 +44,20 @@ _/_/_/_/    _/_/_/  _/          _/_/
 
   首先对区间列表根据每个区间的左端进行排序，Java在`Arrays.sort`中使用`new Comparator<T>(){@Override public int compare(T a, T b){}}`。
   对于b区间的左端小于等于a区间的右端的情况，考虑合并a区间与b区间，取a区间的左端以及a、b两区间右端的最大值作为新区间的左右两端。
+
+## 链表
+在专栏中作者推荐了5道需要多写多练的题目：206、141、21、19、876。除了做这些以外，我根据力扣添加其拓展题目
+
+- **No.206 - [反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)**
+
+  自己只想到了迭代的解法：每次迭代都建立一个临时结点来存储子节点，在迭代的过程当中注意指针的指向。
+  官方给出的递归的方法是假设链表其余部分已经反转，再反转前面部分的链表：
+  ```java
+  public ListNode reverseList(ListNode head) {
+      if (head == null || head.next == null) return head;
+      ListNode p = reverseList(head.next);
+      head.next.next = head;
+      head.next = null;
+      return p;
+  }
+  ```
