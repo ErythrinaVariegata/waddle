@@ -24,8 +24,6 @@ _/_/_/_/    _/_/_/  _/          _/_/
 
   利用暴力法时间复杂度比较高，为`O(n^2)`
   题目中另一标签是哈希表，可以采用`unordered_map`（C++）或`HashMap`（Java）来存储已经遍历过且表中没有另一半的元素，时间复杂度可以降到`O(n)`
-  <details>
-  <summary>Solution</summary>
   
   ```java
     public int[] twoSum(int[] nums, int target) {
@@ -40,13 +38,9 @@ _/_/_/_/    _/_/_/  _/          _/_/
     }
   ```
   
-  </details>
-  
 - **No.26 - [删除排序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)**
 
   由于数组已经是排好序的，根据题目要求空间复杂度为`O(1)`，采用双指针法遍历即可
-  <details>
-  <summary>Solution</summary>
   
   ```java
     public int removeDuplicates(int[] nums) {
@@ -69,16 +63,12 @@ _/_/_/_/    _/_/_/  _/          _/_/
       return pos + 1;
     }
   ```
-  
-  </details>
 
 - **No.11 - [盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water)**
 
   暴力法时间复杂度比较高，为`O(n^2)`，作为中等难度的题目相比AC不了。
   想到长方形的面积是由其宽度和高度决定的，高度一定的情况下越宽越好，然而在宽度缩小的情况下高度越高才能保证面积最大。利用这两个性质采用双指针法。
   双向同时向中间遍历，当遍历完整个数组后即可得到答案
-  <details>
-  <summary>Solution</summary>
   
   ```java
     public int maxArea(int[] height) {
@@ -97,15 +87,11 @@ _/_/_/_/    _/_/_/  _/          _/_/
     }
   ```
   
-  </details>
-  
 - **No.55 - [跳跃游戏](https://leetcode-cn.com/problems/jump-game)**
 
   由题意判断是否能跳至数组尾端，采用贪心的思想进行解题。
   本人的解题思路是选择能够跳得最远的下一个点进行跳跃，而官方题解的思路在于选择最远的距离进行跳跃，略有不同。
   本人的代码略长但时间却比官方题解要少那么1ms，舒服
-  <details>
-  <summary>Solution</summary>
   
   ```java
     public boolean canJump(int[] nums) {
@@ -122,15 +108,11 @@ _/_/_/_/    _/_/_/  _/          _/_/
         return false;
     }
   ```
-  
-  </details>
 
 - **No.56 - [合并区间](https://leetcode-cn.com/problems/merge-intervals)**
 
   首先对区间列表根据每个区间的左端进行排序，
   对于b区间的左端小于等于a区间的右端的情况，考虑合并a区间与b区间，取a区间的左端以及a、b两区间右端的最大值作为新区间的左右两端。
-  <details>
-  <summary>Solution</summary>
   
   ```java
     public int[][] merge(int[][] intervals) {
@@ -160,8 +142,6 @@ _/_/_/_/    _/_/_/  _/          _/_/
     }
   ```
   
-  </details>
-  
 [BACK TO TOP ⬆︎](#从0开始的力扣记录)
 
 ## 链表
@@ -171,10 +151,9 @@ _/_/_/_/    _/_/_/  _/          _/_/
 
   自己只想到了迭代的解法：每次迭代都建立一个临时结点来存储子节点，在迭代的过程当中注意指针的指向。
   官方给出的递归的方法是假设链表其余部分已经反转，再反转前面部分的链表。
-  <details>
-  <summary>Solution1: 迭代</summary>
-  
+
   ```java
+   // Solution1: 迭代
     public ListNode reverseList(ListNode head) {
         ListNode prev = null;
         ListNode curr = head;
@@ -186,13 +165,7 @@ _/_/_/_/    _/_/_/  _/          _/_/
         }
         return prev;
     }
-  ```
-  
-  </details>
-  <details>
-  <summary>Solution2: 递归</summary>
-
-  ```java
+  // Solution2: 递归
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode p = reverseList(head.next);
@@ -201,6 +174,5 @@ _/_/_/_/    _/_/_/  _/          _/_/
         return p;
     }
   ```
-  
-  </details>
+
 [BACK TO TOP ⬆︎](#从0开始的力扣记录)
