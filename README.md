@@ -228,6 +228,8 @@ _/_/_/_/    _/_/_/  _/          _/_/
 
 - **No.141 - [环形链表II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)**
 
+  利用上一个问题的结果找到环的相交点，采用弗洛伊德法获得环的起始点。
+  
   ```java
     public ListNode getIntersect(ListNode head) {
         ListNode fast = head;
