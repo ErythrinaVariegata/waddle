@@ -212,20 +212,54 @@ _/_/_/_/    _/_/_/  _/          _/_/
 
   ```java
    public boolean hasCycle(ListNode head) {
-      if (head == null || head.next == null) {
-          return false;
-      }
-      ListNode fast = head.next.next;
+      ListNode fast = head;
       ListNode slow = head;
-      while (fast != slow) {
-          if (fast == null || fast.next == null) {
-              return false;
+      while (fast != null && fast.next != null) {
+          if (fast == slow) {
+              return slow;
           }
           fast = fast.next.next;
           slow = slow.next;
       }
-      return true;
+      return null;
   }
+  ```
+
+
+- **No.141 - [环形链表II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)**
+
+  ```java
+    public ListNode getIntersect(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            if (fast == slow) {
+                return slow;
+            }
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return null;
+    }
+
+    public ListNode detectCycle(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        // 检查链表中是否有环存在
+        ListNode intersect = getIntersect(head);
+        if (intersect == null) {
+            return null;
+        }
+        // 找到相交点，慢指针继续移动，快指针转变成慢指针向原慢指针移动
+        ListNode ptr1 = head;
+        ListNode ptr2 = intersect;
+        while (ptr1 != ptr2) {
+            ptr1 = ptr1.next;
+            ptr2 = ptr2.next;
+        }
+        return ptr1;
+    }
   ```
 
 [BACK TO TOP ⬆︎](#从0开始的力扣记录)
