@@ -318,5 +318,27 @@ _/_/_/_/    _/_/_/  _/          _/_/
       return head;
     }
   ```
+  
+- **No.876 - [链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/)**
+
+  采用双指针法解决。
+  
+  ```java
+    public ListNode middleNode(ListNode head) {
+      ListNode tail = head;
+      ListNode mid = head;
+      while (tail != null) {
+        if (tail.next == null) {
+          break;
+        }
+        tail = tail.next.next;
+        mid = mid.next;
+      }
+      if (tail != null && tail.next != null) {
+          mid = mid.next;
+      }
+      return mid;
+    }
+  ```
 
 [BACK TO TOP ⬆︎](#从0开始的力扣记录)
