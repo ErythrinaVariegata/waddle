@@ -175,7 +175,7 @@ _/_/_/_/    _/_/_/  _/          _/_/
     }
   ```
   
-- **No.92 - [反转链表II]()**
+- **No.92 - [反转链表II](https://leetcode-cn.com/problems/reverse-linked-list-ii/)**
 
   这一题是上一题的拓展，利用4个指针很快能够得到答案，画图能够很好的帮助理解反转的过程。
   
@@ -204,6 +204,28 @@ _/_/_/_/    _/_/_/  _/          _/_/
       tail.next = currCld;
       return head; 
     }
+  ```
+
+- **No.141 - [环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)**
+
+  快慢指针追及，要是能够追上说明有环路存在，如果存在快指针跑到终点，很明显链表中无环。
+
+  ```java
+   public boolean hasCycle(ListNode head) {
+      if (head == null || head.next == null) {
+          return false;
+      }
+      ListNode fast = head.next.next;
+      ListNode slow = head;
+      while (fast != slow) {
+          if (fast == null || fast.next == null) {
+              return false;
+          }
+          fast = fast.next.next;
+          slow = slow.next;
+      }
+      return true;
+  }
   ```
 
 [BACK TO TOP ⬆︎](#从0开始的力扣记录)
