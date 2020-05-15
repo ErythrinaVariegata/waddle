@@ -174,5 +174,36 @@ _/_/_/_/    _/_/_/  _/          _/_/
         return p;
     }
   ```
+  
+- **No.92 - [反转链表II]()**
+
+  这一题是上一题的拓展，利用4个指针很快能够得到答案，画图能够很好的帮助理解反转的过程。
+  
+  ```java
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+      ListNode prev = null;
+      ListNode curr = head;
+      for (int i = 1; i < m; i++) {
+          prev = curr;
+          curr = curr.next;
+      }
+      ListNode prevPar = prev;
+      ListNode tail = curr;
+      ListNode currCld = null;
+      for (int i = 0; i <= n - m; i++) {
+          currCld = curr.next;
+          curr.next = prev;
+          prev = curr;
+          curr = currCld;
+      }
+      if (prevPar == null) {
+          head = prev;
+      } else {
+          prevPar.next = prev;
+      }
+      tail.next = currCld;
+      return head; 
+    }
+  ```
 
 [BACK TO TOP ⬆︎](#从0开始的力扣记录)
