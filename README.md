@@ -225,8 +225,7 @@ _/_/_/_/    _/_/_/  _/          _/_/
   }
   ```
 
-
-- **No.141 - [环形链表II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)**
+- **No.142 - [环形链表II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)**
 
   利用上一个问题的结果找到环的相交点，采用弗洛伊德法获得环的起始点。
   
@@ -261,6 +260,62 @@ _/_/_/_/    _/_/_/  _/          _/_/
             ptr2 = ptr2.next;
         }
         return ptr1;
+    }
+  ```
+
+- **No.21 - [合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)**
+
+  采用归并排序的办法解决。快得很！
+
+  ```java
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+      ListNode head = new ListNode(-1);
+      ListNode dummyHead = head;
+      while (l1 != null && l2 != null) {
+          if (l1.val <= l2.val) {
+              dummyHead.next = l1;
+              l1 = l1.next;
+          } else {
+              dummyHead.next = l2;
+              l2 = l2.next;
+          }
+          dummyHead = dummyHead.next;
+      }
+      while (l1 != null) {
+          dummyHead.next = l1;
+          l1 = l1.next;
+          dummyHead = dummyHead.next;
+      }
+      while (l2 != null) {
+          dummyHead.next = l2;
+          l2 = l2.next;
+          dummyHead = dummyHead.next;
+      }
+      return head.next;
+    }
+  ```
+
+- **No.19 - [删除链表的倒数第N个节点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/)**
+
+  采用双指针法解决。
+  
+  ```java
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+      ListNode sentry = head;
+      for (int i = 0; i < n; i++) {
+          sentry = sentry.next;
+      }
+      if (sentry == null) {
+          return head.next;
+      }
+      
+      ListNode prev = head;
+      while (sentry.next != null) {
+          prev = prev.next;
+          sentry = sentry.next;
+      }
+      prev.next = prev.next.next;
+      return head;
     }
   ```
 
