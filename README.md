@@ -1,6 +1,8 @@
 # 从0开始的力扣记录！
 - [数组 - Array](#数组)
 - [链表 - LinkedList](#链表)
+- [栈 - Stack](#栈)
+- [队列 - Queue](#队列)
 
 ```text
                           _/                        _/_/                                     
@@ -338,6 +340,59 @@ _/_/_/_/    _/_/_/  _/          _/_/
           mid = mid.next;
       }
       return mid;
+    }
+  ```
+
+[BACK TO TOP ⬆︎](#从0开始的力扣记录)
+
+## 栈
+
+[BACK TO TOP ⬆︎](#从0开始的力扣记录)
+
+## 队列
+力扣里面和队列相关的题目不多，这里就实现一下循环队列和循环双端队列
+
+- **No.622 - [设计循环队列](https://leetcode-cn.com/problems/design-circular-queue/)**
+
+  注意队满队空的条件，视情况需多增加一格存放队尾指针
+  
+  ```java
+    class CircularQueue {
+      private final int[] q;
+      private final int size;
+      private int head = 0;
+      private int tail = 0;
+      public CircularQueue(int k) {
+          this.q = new int[k + 1];
+          this.size = k + 1;
+      }
+      public boolean enQueue(int value) {
+          if (isFull()) {
+              return false;
+          }
+          this.q[this.tail] = value;
+          this.tail = (this.tail + 1) % this.size;
+          return true;
+      }
+      public boolean deQueue() {
+          if (isEmpty()) {
+              return false;
+          }
+          this.head = (this.head + 1) % this.size;
+          return true;
+      }
+      public int Front() {
+          return isEmpty()? -1 : this.q[this.head];
+      }
+      public int Rear() {
+          return isEmpty()? -1 : this.tail == 0? this.q[this.size - 1] : q[this.tail - 1];
+      }
+      public boolean isEmpty() {
+          return this.head == this.tail;
+      }
+      public boolean isFull() {
+          return this.head == (this.tail + 1) % this.size;
+      }
     }
   ```
 
