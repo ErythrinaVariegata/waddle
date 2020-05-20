@@ -362,10 +362,12 @@ _/_/_/_/    _/_/_/  _/          _/_/
       private final int size;
       private int head = 0;
       private int tail = 0;
+      
       public CircularQueue(int k) {
           this.q = new int[k + 1];
           this.size = k + 1;
       }
+      
       public boolean enQueue(int value) {
           if (isFull()) {
               return false;
@@ -374,6 +376,7 @@ _/_/_/_/    _/_/_/  _/          _/_/
           this.tail = (this.tail + 1) % this.size;
           return true;
       }
+      
       public boolean deQueue() {
           if (isEmpty()) {
               return false;
@@ -381,17 +384,99 @@ _/_/_/_/    _/_/_/  _/          _/_/
           this.head = (this.head + 1) % this.size;
           return true;
       }
+      
       public int Front() {
           return isEmpty()? -1 : this.q[this.head];
       }
+      
       public int Rear() {
           return isEmpty()? -1 : this.tail == 0? this.q[this.size - 1] : q[this.tail - 1];
       }
+      
       public boolean isEmpty() {
           return this.head == this.tail;
       }
+      
       public boolean isFull() {
           return this.head == (this.tail + 1) % this.size;
+      }
+    }
+  ```
+
+
+- **No.622 - [设计循环双端队列](https://leetcode-cn.com/problems/design-circular-deque/)**
+
+  注意队满队空的条件，视情况需多增加一格存放队尾指针
+  
+  ```java
+    class MyCircularDeque {
+      private final int[] q;
+      private int size = 0;
+
+      /** Initialize your data structure here. Set the size of the deque to be k. */
+      public MyCircularDeque(int k) {
+          this.q = new int[k];
+      }
+
+      /** Adds an item at the front of Deque. Return true if the operation is successful. */
+      public boolean insertFront(int value) {
+          if (isFull()) {
+              return false;
+          }
+          System.arraycopy(this.q, 0, this.q, 1, size);
+          this.q[0] = value;
+          this.size++;
+          return true;
+      }
+
+      /** Adds an item at the rear of Deque. Return true if the operation is successful. */
+      public boolean insertLast(int value) {
+          if (isFull()) {
+              return false;
+          }
+          this.q[this.size] = value;
+          this.size++;
+          return true;
+      }
+
+      /** Deletes an item from the front of Deque. Return true if the operation is successful. */
+      public boolean deleteFront() {
+          if (isEmpty()) {
+              return false;
+          }
+          size--;
+          System.arraycopy(this.q, 1, this.q, 0, size);
+          return true;
+      }
+
+      /** Deletes an item from the rear of Deque. Return true if the operation is successful. */
+      public boolean deleteLast() {
+          if (isEmpty()) {
+              return false;
+          }
+          this.q[size - 1] = 0;
+          size--;
+          return true;
+      }
+
+      /** Get the front item from the deque. */
+      public int getFront() {
+          return isEmpty()? -1 : this.q[0];
+      }
+
+      /** Get the last item from the deque. */
+      public int getRear() {
+          return isEmpty()? -1 : this.q[size - 1];
+      }
+
+      /** Checks whether the circular deque is empty or not. */
+      public boolean isEmpty() {
+          return this.size == 0;
+      }
+
+      /** Checks whether the circular deque is full or not. */
+      public boolean isFull() {
+          return this.size == q.length;
       }
     }
   ```
